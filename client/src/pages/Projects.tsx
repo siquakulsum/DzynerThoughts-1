@@ -45,11 +45,11 @@ const Projects = () => {
       </Helmet>
 
       {/* Elegant Hero Banner with Decorative Elements */}
-      <section className="relative pt-32 pb-20 overflow-hidden bg-gradient-to-r from-royal-DEFAULT via-royal-dark to-royal-DEFAULT">
+      <section className="relative pt-32 pb-20 overflow-hidden bg-gradient-to-r from-[#3c1867] via-[#2a1048] to-[#3c1867]">
         {/* Decorative elements */}
         <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-gold opacity-5 rounded-full translate-x-1/2 -translate-y-1/2"></div>
-          <div className="absolute bottom-0 left-0 w-96 h-96 bg-gold opacity-5 rounded-full -translate-x-1/2 translate-y-1/2"></div>
+          <div className="absolute top-0 right-0 w-96 h-96 bg-[#ffd700] opacity-5 rounded-full translate-x-1/2 -translate-y-1/2"></div>
+          <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#ffd700] opacity-5 rounded-full -translate-x-1/2 translate-y-1/2"></div>
           
           {/* Pattern overlay */}
           <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0wIDBoNjB2NjBIMHoiLz48cGF0aCBkPSJNMzAgMzBtLTI4IDBhMjggMjggMCAxIDAgNTYgMCAyOCAyOCAwIDEgMC01NiAwIiBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iLjUiIHN0cm9rZS1vcGFjaXR5PSIuMSIvPjxwYXRoIGQ9Ik0zMCAzMG0tMjQgMGEyNCAyNCAwIDEgMCA0OCAwIDI0IDI0IDAgMSAwLTQ4IDAiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLXdpZHRoPSIuNSIgc3Ryb2tlLW9wYWNpdHk9Ii4xIi8+PHBhdGggZD0iTTMwIDMwbS0yMCAwYTIwIDIwIDAgMSAwIDQwIDAgMjAgMjAgMCAxIDAtNDAgMCIgc3Ryb2tlPSIjZmZmIiBzdHJva2Utd2lkdGg9Ii41IiBzdHJva2Utb3BhY2l0eT0iLjEiLz48cGF0aCBkPSJNMzAgMzBtLTE2IDBhMTYgMTYgMCAxIDAgMzIgMCAxNiAxNiAwIDEgMC0zMiAwIiBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iLjUiIHN0cm9rZS1vcGFjaXR5PSIuMSIvPjxwYXRoIGQ9Ik0zMCAzMG0tMTIgMGExMiAxMiAwIDEgMCAyNCAwIDEyIDEyIDAgMSAwLTI0IDAiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLXdpZHRoPSIuNSIgc3Ryb2tlLW9wYWNpdHk9Ii4xIi8+PHBhdGggZD0iTTMwIDMwbS04IDBhOCA4IDAgMSAwIDE2IDAgOCA4IDAgMSAwLTE2IDAiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLXdpZHRoPSIuNSIgc3Ryb2tlLW9wYWNpdHk9Ii4xIi8+PHBhdGggZD0iTTMwIDMwbS00IDBhNCA0IDAgMSAwIDggMCA0IDQgMCAxIDAtOCAwIiBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iLjUiIHN0cm9rZS1vcGFjaXR5PSIuMSIvPjwvZz48L3N2Zz4=')] opacity-10"></div>
@@ -59,24 +59,24 @@ const Projects = () => {
           <div className="flex flex-col items-center max-w-3xl mx-auto text-center">
             {/* Label */}
             <div className="inline-flex items-center mb-5">
-              <span className="h-px w-8 bg-gold"></span>
-              <span className="mx-3 text-gold font-cinzel tracking-widest text-sm uppercase">Portfolio</span>
-              <span className="h-px w-8 bg-gold"></span>
+              <span className="h-px w-8 bg-[#ffd700]"></span>
+              <span className="mx-3 text-[#ffd700] font-cinzel tracking-widest text-sm uppercase">Portfolio</span>
+              <span className="h-px w-8 bg-[#ffd700]"></span>
             </div>
             
             {/* Title */}
             <h1 className="text-4xl md:text-6xl font-cinzel text-white font-bold mb-6 leading-tight">
-              Our <span className="text-gold">Projects</span>
+              Our <span className="text-[#ffd700]">Projects</span>
             </h1>
             
             {/* Description */}
-            <p className="text-white/90 text-lg max-w-2xl mx-auto font-josefin leading-relaxed mb-8">
+            <p className="text-white text-lg max-w-2xl mx-auto font-josefin leading-relaxed mb-8">
               Explore our portfolio of meticulously crafted interiors that embody sophistication, 
               functionality, and our signature attention to detail.
             </p>
             
             {/* Decorative element */}
-            <div className="w-24 h-1.5 mt-2 bg-gradient-to-r from-transparent via-gold to-transparent"></div>
+            <div className="w-24 h-1.5 mt-2 bg-gradient-to-r from-transparent via-[#ffd700] to-transparent"></div>
           </div>
         </div>
       </section>
@@ -181,19 +181,19 @@ const Projects = () => {
           {/* Luxurious CTA Section */}
           <div className="mt-32 relative">
             <div className="absolute inset-0 rounded-xl overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-r from-royal-DEFAULT to-royal-dark opacity-90"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-[#3c1867] to-[#2a1048] opacity-95"></div>
               <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0wIDBoNjB2NjBIMHoiLz48cGF0aCBkPSJNMzAgMzBtLTI4IDBhMjggMjggMCAxIDAgNTYgMCAyOCAyOCAwIDEgMC01NiAwIiBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iLjUiIHN0cm9rZS1vcGFjaXR5PSIuMSIvPjxwYXRoIGQ9Ik0zMCAzMG0tMjQgMGEyNCAyNCAwIDEgMCA0OCAwIDI0IDI0IDAgMSAwLTQ4IDAiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLXdpZHRoPSIuNSIgc3Ryb2tlLW9wYWNpdHk9Ii4xIi8+PHBhdGggZD0iTTMwIDMwbS0yMCAwYTIwIDIwIDAgMSAwIDQwIDAgMjAgMjAgMCAxIDAtNDAgMCIgc3Ryb2tlPSIjZmZmIiBzdHJva2Utd2lkdGg9Ii41IiBzdHJva2Utb3BhY2l0eT0iLjEiLz48cGF0aCBkPSJNMzAgMzBtLTE2IDBhMTYgMTYgMCAxIDAgMzIgMCAxNiAxNiAwIDEgMC0zMiAwIiBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iLjUiIHN0cm9rZS1vcGFjaXR5PSIuMSIvPjxwYXRoIGQ9Ik0zMCAzMG0tMTIgMGExMiAxMiAwIDEgMCAyNCAwIDEyIDEyIDAgMSAwLTI0IDAiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLXdpZHRoPSIuNSIgc3Ryb2tlLW9wYWNpdHk9Ii4xIi8+PHBhdGggZD0iTTMwIDMwbS04IDBhOCA4IDAgMSAwIDE2IDAgOCA4IDAgMSAwLTE2IDAiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLXdpZHRoPSIuNSIgc3Ryb2tlLW9wYWNpdHk9Ii4xIi8+PHBhdGggZD0iTTMwIDMwbS00IDBhNCA0IDAgMSAwIDggMCA0IDQgMCAxIDAtOCAwIiBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iLjUiIHN0cm9rZS1vcGFjaXR5PSIuMSIvPjwvZz48L3N2Zz4=')] opacity-20"></div>
             </div>
             
             <div className="relative z-10 py-16 px-6 text-center">
               <h2 className="text-3xl md:text-4xl font-cinzel text-white mb-6">Envision Your Perfect Space</h2>
-              <p className="text-white/90 text-lg max-w-2xl mx-auto mb-10 font-josefin">
+              <p className="text-white text-lg max-w-2xl mx-auto mb-10 font-josefin">
                 Let us transform your vision into reality. Our expert designers are ready to collaborate 
                 with you to create a space that reflects your unique style and enhances your lifestyle.
               </p>
               <a 
                 href="/contact" 
-                className="px-8 py-4 btn-gold rounded-full"
+                className="px-8 py-4 bg-[#ffd700] text-[#2a1048] font-cinzel tracking-wider uppercase text-xs transition-all duration-300 hover:bg-[#b39700] hover:text-white hover:shadow-lg hover:transform hover:-translate-y-1 rounded-full"
               >
                 Start Your Project
               </a>

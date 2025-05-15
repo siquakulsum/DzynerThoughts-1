@@ -1,0 +1,239 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 0 0% 100%;
+  --foreground: 20 14.3% 4.1%;
+  --muted: 60 4.8% 95.9%;
+  --muted-foreground: 25 5.3% 44.7%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 20 14.3% 4.1%;
+  --card: 0 0% 100%;
+  --card-foreground: 20 14.3% 4.1%;
+  --border: 20 5.9% 90%;
+  --input: 20 5.9% 90%;
+  --primary: 272 59% 39%; /* Royal purple */
+  --primary-foreground: 211 100% 99%;
+  --secondary: 60 4.8% 95.9%;
+  --secondary-foreground: 24 9.8% 10%;
+  --accent: 60 4.8% 95.9%;
+  --accent-foreground: 24 9.8% 10%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 60 9.1% 97.8%;
+  --ring: 272 59% 39%; /* Royal purple */
+  --radius: 0.5rem;
+
+  /* Custom colors for the royal theme */
+  --royal-light: 272 59% 54%; /* #8F45CF */
+  --royal-DEFAULT: 272 59% 39%; /* #5F259F */
+  --royal-dark: 272 59% 30%; /* #4A1D7A */
+  --gold: 51 100% 50%; /* #FFD700 */
+  --neutral-light: 0 0% 97%; /* #F8F8F8 */
+  --neutral-DEFAULT: 0 0% 90%; /* #E5E5E5 */
+  --neutral-dark: 0 0% 20%; /* #333333 */
+  
+  /* Chart colors */
+  --chart-1: 272 59% 39%;
+  --chart-2: 272 59% 54%;
+  --chart-3: 272 59% 30%;
+  --chart-4: 51 100% 50%;
+  --chart-5: 0 0% 90%;
+}
+
+.dark {
+  --background: 240 10% 3.9%;
+  --foreground: 0 0% 98%;
+  --muted: 240 3.7% 15.9%;
+  --muted-foreground: 240 5% 64.9%;
+  --popover: 240 10% 3.9%;
+  --popover-foreground: 0 0% 98%;
+  --card: 240 10% 3.9%;
+  --card-foreground: 0 0% 98%;
+  --border: 240 3.7% 15.9%;
+  --input: 240 3.7% 15.9%;
+  --primary: 272 59% 39%; /* Royal purple */
+  --primary-foreground: 211 100% 99%;
+  --secondary: 240 3.7% 15.9%;
+  --secondary-foreground: 0 0% 98%;
+  --accent: 240 3.7% 15.9%;
+  --accent-foreground: 0 0% 98%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 0 0% 98%;
+  --ring: 240 4.9% 83.9%;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+  }
+}
+
+/* Custom fonts */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Raleway:wght@300;400;500;600&family=Montserrat:wght@300;400;500;600&display=swap');
+
+/* Custom utility classes */
+@layer components {
+  .font-playfair {
+    font-family: 'Playfair Display', serif;
+  }
+  
+  .font-raleway {
+    font-family: 'Raleway', sans-serif;
+  }
+  
+  .font-montserrat {
+    font-family: 'Montserrat', sans-serif;
+  }
+  
+  .bg-royal-light {
+    background-color: hsl(var(--royal-light));
+  }
+  
+  .bg-royal-DEFAULT {
+    background-color: hsl(var(--royal-DEFAULT));
+  }
+  
+  .bg-royal-dark {
+    background-color: hsl(var(--royal-dark));
+  }
+  
+  .text-royal-light {
+    color: hsl(var(--royal-light));
+  }
+  
+  .text-royal-DEFAULT {
+    color: hsl(var(--royal-DEFAULT));
+  }
+  
+  .text-royal-dark {
+    color: hsl(var(--royal-dark));
+  }
+  
+  .bg-neutral-light {
+    background-color: hsl(var(--neutral-light));
+  }
+  
+  .bg-neutral-DEFAULT {
+    background-color: hsl(var(--neutral-DEFAULT));
+  }
+  
+  .bg-neutral-dark {
+    background-color: hsl(var(--neutral-dark));
+  }
+  
+  /* Animation classes */
+  .hero-text {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 1s forwards 0.5s;
+  }
+  
+  .hero-img {
+    opacity: 0;
+    animation: fadeIn 1.5s forwards 0.8s;
+  }
+  
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+    }
+  }
+  
+  .page-section {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease;
+  }
+  
+  .page-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .scroll-indicator {
+    animation: bounce 2s infinite;
+  }
+  
+  @keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+      transform: translateY(0);
+    }
+    40% {
+      transform: translateY(-20px);
+    }
+    60% {
+      transform: translateY(-10px);
+    }
+  }
+  
+  /* Button styles */
+  .btn-royal {
+    @apply bg-[hsl(var(--royal-DEFAULT))] text-white transition-all duration-300 hover:bg-[hsl(var(--royal-dark))] hover:transform hover:-translate-y-1 hover:shadow-lg;
+  }
+  
+  /* Navigation link styles */
+  .nav-link {
+    @apply relative font-montserrat font-medium transition-colors duration-300;
+  }
+  
+  .nav-link::after {
+    content: '';
+    @apply absolute w-0 h-0.5 bottom-0 left-0 bg-[hsl(var(--royal-DEFAULT))] transition-all duration-300;
+  }
+  
+  .nav-link:hover::after, .nav-link.active::after {
+    @apply w-full;
+  }
+  
+  /* Service card styles */
+  .service-card {
+    @apply transition-all duration-300 border-b-[3px] border-transparent;
+  }
+  
+  .service-card:hover {
+    @apply transform -translate-y-2.5 border-b-[3px] border-[hsl(var(--royal-DEFAULT))];
+  }
+  
+  /* Project card styles */
+  .project-card img {
+    @apply transition-all duration-500;
+  }
+  
+  .project-card:hover img {
+    @apply transform scale-105;
+  }
+  
+  /* Filter button styles */
+  .filter-btn {
+    @apply transition-all duration-300;
+  }
+  
+  .filter-btn.active {
+    @apply bg-[hsl(var(--royal-DEFAULT))] text-white;
+  }
+  
+  /* Modal image container styles */
+  .modal-img-container {
+    @apply overflow-hidden;
+  }
+  
+  .modal-img-container img {
+    @apply transition-transform duration-500;
+  }
+  
+  .modal-img-container:hover img {
+    @apply transform scale-105;
+  }
+}

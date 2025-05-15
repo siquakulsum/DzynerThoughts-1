@@ -261,4 +261,211 @@ export class DatabaseStorage implements IStorage {
   }
 }
 
-export const storage = new DatabaseStorage();
+// Memory Storage implementation
+export class MemStorage implements IStorage {
+  private users: User[] = [];
+  private services: Service[] = [];
+  private projects: Project[] = [];
+  private contacts: Contact[] = [];
+  private userId = 1;
+  private serviceId = 1;
+  private projectId = 1;
+  private contactId = 1;
+
+  // User methods
+  async getUser(id: number): Promise<User | undefined> {
+    return this.users.find(user => user.id === id);
+  }
+
+  async getUserByUsername(username: string): Promise<User | undefined> {
+    return this.users.find(user => user.username === username);
+  }
+
+  async createUser(insertUser: InsertUser): Promise<User> {
+    const newUser: User = {
+      ...insertUser,
+      id: this.userId++,
+      createdAt: new Date()
+    };
+    this.users.push(newUser);
+    return newUser;
+  }
+
+  // Service methods
+  async getAllServices(): Promise<Service[]> {
+    return [...this.services];
+  }
+
+  async getService(id: number): Promise<Service | undefined> {
+    return this.services.find(service => service.id === id);
+  }
+
+  async createService(insertService: InsertService): Promise<Service> {
+    const newService: Service = {
+      ...insertService,
+      id: this.serviceId++
+    };
+    this.services.push(newService);
+    return newService;
+  }
+
+  // Project methods
+  async getAllProjects(): Promise<Project[]> {
+    return [...this.projects];
+  }
+
+  async getProject(id: number): Promise<Project | undefined> {
+    return this.projects.find(project => project.id === id);
+  }
+
+  async getProjectsByCategory(category: string): Promise<Project[]> {
+    return this.projects.filter(project => 
+      project.categories.includes(category)
+    );
+  }
+
+  async createProject(insertProject: InsertProject): Promise<Project> {
+    const newProject: Project = {
+      ...insertProject,
+      id: this.projectId++
+    };
+    this.projects.push(newProject);
+    return newProject;
+  }
+
+  // Contact methods
+  async createContact(insertContact: InsertContact): Promise<Contact> {
+    const newContact: Contact = {
+      ...insertContact,
+      id: this.contactId++,
+      createdAt: new Date()
+    };
+    this.contacts.push(newContact);
+    return newContact;
+  }
+
+  // Initialize default data
+  async initializeDefaultData() {
+    // Check if we already have services in the database
+    const existingServices = await this.getAllServices();
+    if (existingServices.length === 0) {
+      console.log("Initializing default services in memory storage...");
+      await this.initDefaultServices();
+    }
+
+    // Check if we already have projects in the database
+    const existingProjects = await this.getAllProjects();
+    if (existingProjects.length === 0) {
+      console.log("Initializing default projects in memory storage...");
+      await this.initDefaultProjects();
+    }
+  }
+
+  private async initDefaultServices() {
+    const defaultServices: InsertService[] = [
+      {
+        title: "Space Planning",
+        description: "Optimize your living or working environment with thoughtful space planning that maximizes functionality and flow.",
+        icon: "bi-layout-text-window"
+      },
+      {
+        title: "Color Consultation",
+        description: "Select the perfect palette to create the desired ambiance and psychological effect in your space.",
+        icon: "bi-palette"
+      },
+      {
+        title: "Furniture & Decor Selection",
+        description: "Source and select furniture and decor pieces that reflect your style while meeting your practical needs.",
+        icon: "bi-shop"
+      },
+      {
+        title: "3D Rendering & Visualization",
+        description: "Experience your space before it's built with photorealistic 3D rendering and visualization services.",
+        icon: "bi-box"
+      },
+      {
+        title: "Lighting Design",
+        description: "Transform your space with a comprehensive lighting plan that enhances both functionality and atmosphere.",
+        icon: "bi-lamp"
+      },
+      {
+        title: "Project Management",
+        description: "From concept to completion, we handle every aspect of your project to ensure seamless execution and stunning results.",
+        icon: "bi-tools"
+      },
+      {
+        title: "Material & Finish Selection",
+        description: "Choose the perfect materials and finishes for your space to create the desired look and durability.",
+        icon: "bi-grid-3x3"
+      }
+    ];
+
+    for (const service of defaultServices) {
+      await this.createService(service);
+    }
+  }
+
+  private async initDefaultProjects() {
+    const defaultProjects: InsertProject[] = [
+      {
+        title: "Minimalist Apartment",
+        description: "Contemporary design with clean lines and thoughtful details.",
+        image: "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600",
+        categories: "residential,modern",
+        details: "A complete renovation of a 1,200 sq ft apartment in the heart of the city. The client wanted a minimalist aesthetic with clean lines, neutral colors, and strategic pops of royal purple as an accent.",
+        scope: ["Space planning", "Custom furniture design", "Material selection", "Lighting design", "Artwork curation"],
+        location: "Downtown Metropolitan",
+        size: "1,200 sq ft",
+        duration: "3 months",
+        style: "Modern Minimalist",
+        year: "2023"
+      },
+      {
+        title: "Heritage Residence",
+        description: "Classic design elements with modern functionality and comfort.",
+        image: "https://images.unsplash.com/photo-1618220179428-22790b461013?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600",
+        categories: "residential,traditional",
+        details: "Renovation of a heritage home preserving original architectural details while incorporating modern conveniences and custom furniture pieces.",
+        scope: ["Historic preservation", "Custom millwork", "Furniture selection", "Textile selection", "Lighting design"],
+        location: "Historic District",
+        size: "2,800 sq ft",
+        duration: "6 months",
+        style: "Traditional with Modern Elements",
+        year: "2022"
+      },
+      {
+        title: "Tech Startup Office",
+        description: "Dynamic workspace designed for collaboration and creativity.",
+        image: "https://images.unsplash.com/photo-1497215842964-222b430dc094?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600",
+        categories: "commercial,modern",
+        details: "Modern office space for a growing tech company featuring open collaborative areas, private meeting spaces, and a vibrant color scheme reflecting the company's brand.",
+        scope: ["Space planning", "Custom workstations", "Meeting rooms", "Breakout areas", "Acoustic solutions"],
+        location: "Tech District",
+        size: "3,500 sq ft",
+        duration: "2 months",
+        style: "Contemporary Corporate",
+        year: "2023"
+      },
+      {
+        title: "Luxury Penthouse",
+        description: "High-end finishes and custom details for elevated living.",
+        image: "https://images.unsplash.com/photo-1560448205-4d9b3e6bb6db?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600",
+        categories: "residential,modern",
+        details: "Complete interior design for a penthouse apartment featuring custom furnishings, high-end materials, and smart home integration.",
+        scope: ["Space planning", "Custom furniture", "Material selection", "Lighting design", "Art curation", "Smart home integration"],
+        location: "City Center",
+        size: "3,200 sq ft",
+        duration: "8 months",
+        style: "Luxury Modern",
+        year: "2022"
+      }
+    ];
+
+    for (const project of defaultProjects) {
+      await this.createProject(project);
+    }
+  }
+}
+
+// Choose the right storage implementation based on database availability
+export const storage = db ? new DatabaseStorage() : new MemStorage();

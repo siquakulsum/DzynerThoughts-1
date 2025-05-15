@@ -42,40 +42,101 @@ const Home = () => {
         <meta name="description" content="Transform your space with Dzyner Thoughts - Premier interior design studio crafting elegant, personalized spaces that inspire and enhance your lifestyle." />
       </Helmet>
 
-      {/* Hero Section */}
-      <section className="min-h-screen flex items-center" ref={ref}>
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col lg:flex-row items-center">
-            <div className="lg:w-1/2 hero-text">
-              <h1 className="text-4xl md:text-5xl font-bold text-royal-DEFAULT mb-3 font-playfair">
-                Transform Your Space Into a Masterpiece
+      {/* Hero Section - Luxurious and Dynamic Design */}
+      <section className="min-h-screen relative overflow-hidden" ref={ref}>
+        {/* Decorative Elements */}
+        <div className="absolute left-0 top-20 w-32 h-32 md:w-56 md:h-56 rounded-full bg-gradient-to-r from-[hsl(var(--royal-light)/0.05)] to-[hsl(var(--royal-DEFAULT)/0.1)] blur-3xl"></div>
+        <div className="absolute right-0 bottom-10 w-32 h-32 md:w-64 md:h-64 rounded-full bg-gradient-to-l from-[hsl(var(--gold-light)/0.05)] to-[hsl(var(--gold)/0.1)] blur-3xl"></div>
+        
+        <div className="container mx-auto px-4 pt-24 pb-10 md:py-16 h-full flex items-center">
+          <div className="flex flex-col lg:flex-row items-center justify-between w-full z-10 relative">
+            {/* Left Content */}
+            <div className="lg:w-5/12 hero-text">
+              <div className="flex items-center mb-4">
+                <div className="h-px w-16 bg-gradient-to-r from-[hsl(var(--gold))] to-transparent"></div>
+                <span className="ml-4 text-royal-DEFAULT font-cinzel tracking-widest uppercase text-sm">Exquisite Interiors</span>
+              </div>
+              
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-cinzel leading-tight mb-6">
+                <span className="text-royal-DEFAULT">Transform Your</span> <br />
+                <span className="text-gradient">Space Into Art</span>
               </h1>
-              <p className="text-lg mb-6 font-raleway">
-                We create thoughtful, elegant interiors that reflect your personality and enhance your lifestyle.
+              
+              <p className="text-lg mb-8 font-josefin text-gray-700 max-w-xl leading-relaxed">
+                We blend timeless elegance with modern sophistication to create interiors that evoke emotion, inspire living, and reflect your unique personality.
               </p>
-              <div className="flex flex-wrap gap-3">
+              
+              <div className="flex flex-wrap gap-4">
                 <Link 
                   href="/projects" 
-                  className="px-4 py-2 bg-[hsl(var(--royal-DEFAULT))] text-white rounded-full text-sm font-medium transition-all duration-300 hover:bg-[hsl(var(--royal-dark))] hover:transform hover:-translate-y-0.5 hover:shadow-md"
+                  className="px-6 py-3 btn-royal rounded-full"
                 >
-                  View Our Work
+                  Explore Portfolio
                 </Link>
                 <Link 
                   href="/services" 
-                  className="px-4 py-2 border border-gray-800 rounded-full text-sm font-medium transition-all duration-300 hover:bg-gray-100 hover:transform hover:-translate-y-0.5"
+                  className="px-6 py-3 btn-gold rounded-full"
                 >
                   Our Services
                 </Link>
               </div>
+              
+              {/* Decorative Pattern */}
+              <div className="hidden lg:block absolute -left-20 bottom-0 w-32 h-32 opacity-10">
+                <div className="w-full h-full border-8 border-[hsl(var(--royal-DEFAULT))] rounded-full"></div>
+                <div className="w-1/2 h-1/2 border-8 border-[hsl(var(--gold))] rounded-full absolute top-1/4 left-1/4"></div>
+              </div>
             </div>
             
-            <div className="lg:w-1/2 hero-img mt-8 lg:mt-0">
-              <img 
-                src="https://images.unsplash.com/photo-1615529182904-14819c35db37?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1200&h=800" 
-                alt="Elegant interior design showcase" 
-                className="w-full object-cover rounded-lg shadow-xl"
-              />
+            {/* Right Content - Layered Images */}
+            <div className="lg:w-6/12 hero-img mt-12 lg:mt-0 relative">
+              <div className="relative">
+                {/* Main Image with Frame */}
+                <div className="relative z-20 rounded-lg overflow-hidden border-8 border-white shadow-xl">
+                  <img 
+                    src="https://images.unsplash.com/photo-1615529182904-14819c35db37?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1200&h=800" 
+                    alt="Elegant interior design showcase" 
+                    className="w-full h-full object-cover"
+                  />
+                  
+                  {/* Gold accent */}
+                  <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-[hsl(var(--gold))] to-transparent"></div>
+                </div>
+                
+                {/* Decorative Elements */}
+                <div className="absolute -top-5 -left-5 w-32 h-32 border-8 border-[hsl(var(--royal-DEFAULT))] rounded-lg z-10 opacity-20"></div>
+                <div className="absolute -bottom-5 -right-5 w-36 h-36 border-8 border-[hsl(var(--gold))] rounded-lg z-10 opacity-20"></div>
+                
+                {/* Floating accents */}
+                <div className="absolute -top-10 right-20 w-20 h-20 bg-[hsl(var(--royal-light))] rounded-full opacity-10 animate-pulse"></div>
+                <div className="absolute -bottom-8 left-20 w-14 h-14 bg-[hsl(var(--gold))] rounded-full opacity-10 animate-pulse"></div>
+              </div>
+              
+              {/* Stats overlay - Adding credibility */}
+              <div className="absolute bottom-6 right-6 bg-white/90 backdrop-blur-md p-5 rounded-lg shadow-xl border border-[hsl(var(--gold-light)/0.3)] z-30 hidden md:block">
+                <div className="flex items-center space-x-4">
+                  <div className="text-center px-4 border-r border-gray-200">
+                    <div className="text-2xl font-cinzel text-royal-DEFAULT">10+</div>
+                    <div className="text-xs uppercase tracking-wider text-gray-500">Years</div>
+                  </div>
+                  <div className="text-center px-4 border-r border-gray-200">
+                    <div className="text-2xl font-cinzel text-royal-DEFAULT">200+</div>
+                    <div className="text-xs uppercase tracking-wider text-gray-500">Projects</div>
+                  </div>
+                  <div className="text-center px-4">
+                    <div className="text-2xl font-cinzel text-royal-DEFAULT">98%</div>
+                    <div className="text-xs uppercase tracking-wider text-gray-500">Satisfaction</div>
+                  </div>
+                </div>
+              </div>
             </div>
+          </div>
+        </div>
+        
+        {/* Scroll Indicator */}
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 hidden md:block">
+          <div className="scroll-indicator text-royal-DEFAULT">
+            <i className="bi bi-chevron-down text-3xl"></i>
           </div>
         </div>
       </section>

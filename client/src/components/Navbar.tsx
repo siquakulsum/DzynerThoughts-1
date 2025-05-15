@@ -10,7 +10,7 @@ const Navbar = () => {
   // Handle navbar background on scroll
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 0) {
+      if (window.scrollY > 50) {
         setScrolled(true);
       } else {
         setScrolled(false);
@@ -28,29 +28,46 @@ const Navbar = () => {
   };
 
   return (
-    <nav className={`sticky top-0 left-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-white shadow-sm' : 'bg-white shadow-sm'}`}>
-      <div className="container mx-auto px-4 py-3">
+    <nav 
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
+        scrolled 
+          ? 'bg-white/95 backdrop-blur-md shadow-md py-3' 
+          : 'bg-transparent py-6'
+      }`}
+    >
+      <div className="container mx-auto px-4">
         <div className="flex items-center justify-between">
-          <Link href="/" className="flex items-center">
-            <span className="text-royal-DEFAULT font-playfair text-2xl font-bold">Dzyner Thoughts</span>
+          {/* Logo */}
+          <Link href="/" className="flex items-center group">
+            <div className="mr-2 flex items-center justify-center w-10 h-10 bg-royal-DEFAULT rounded-full overflow-hidden transition-all duration-300 group-hover:shadow-royal">
+              <span className="text-white font-cinzel text-xl">D</span>
+            </div>
+            <div className="flex flex-col">
+              <span className="text-royal-DEFAULT font-cinzel text-xl font-bold tracking-wide group-hover:text-gradient">
+                Dzyner Thoughts
+              </span>
+              <span className="text-xs text-gray-500 font-josefin tracking-widest uppercase -mt-1">Interior Excellence</span>
+            </div>
           </Link>
           
           {/* Mobile menu button */}
           <button 
-            className="md:hidden"
+            className="md:hidden z-50"
             onClick={() => setIsOpen(!isOpen)}
             aria-label="Toggle menu"
           >
-            {isOpen ? (
-              <i className="bi bi-x-lg text-xl"></i>
-            ) : (
-              <i className="bi bi-list text-2xl"></i>
-            )}
+            <div className="w-8 h-8 flex items-center justify-center rounded-full bg-white shadow-md">
+              {isOpen ? (
+                <i className="bi bi-x-lg text-royal-DEFAULT"></i>
+              ) : (
+                <i className="bi bi-list text-royal-DEFAULT"></i>
+              )}
+            </div>
           </button>
           
           {/* Desktop Menu */}
-          <div className="hidden md:flex items-center space-x-1">
-            <ul className="flex space-x-4">
+          <div className="hidden md:flex items-center space-x-2">
+            <ul className="flex space-x-6">
               <li>
                 <Link 
                   href="/" 
@@ -94,74 +111,98 @@ const Navbar = () => {
             </ul>
             <Link 
               href="/contact" 
-              className="ml-4 px-4 py-2 bg-[hsl(var(--royal-DEFAULT))] text-white rounded-full text-sm font-medium transition-all duration-300 hover:bg-[hsl(var(--royal-dark))] hover:transform hover:-translate-y-0.5 hover:shadow-md"
+              className="ml-8 px-6 py-2.5 btn-royal rounded-full"
             >
               Get In Touch
             </Link>
           </div>
         </div>
         
-        {/* Mobile menu */}
-        {isOpen && (
-          <div className="md:hidden pt-4 pb-2">
-            <ul className="flex flex-col space-y-3">
-              <li>
-                <Link 
-                  href="/"
-                  className={`nav-link block px-2 py-1 ${isActive('/') ? 'active' : ''}`}
-                  onClick={() => setIsOpen(false)}
-                >
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link 
-                  href="/about"
-                  className={`nav-link block px-2 py-1 ${isActive('/about') ? 'active' : ''}`}
-                  onClick={() => setIsOpen(false)}
-                >
-                  About Us
-                </Link>
-              </li>
-              <li>
-                <Link 
-                  href="/services"
-                  className={`nav-link block px-2 py-1 ${isActive('/services') ? 'active' : ''}`}
-                  onClick={() => setIsOpen(false)}
-                >
-                  Services
-                </Link>
-              </li>
-              <li>
-                <Link 
-                  href="/projects"
-                  className={`nav-link block px-2 py-1 ${isActive('/projects') ? 'active' : ''}`}
-                  onClick={() => setIsOpen(false)}
-                >
-                  Projects
-                </Link>
-              </li>
-              <li>
-                <Link 
-                  href="/contact"
-                  className={`nav-link block px-2 py-1 ${isActive('/contact') ? 'active' : ''}`}
-                  onClick={() => setIsOpen(false)}
-                >
-                  Contact
-                </Link>
-              </li>
-              <li className="pt-2">
-                <Link 
-                  href="/contact" 
-                  className="inline-block px-4 py-2 bg-[hsl(var(--royal-DEFAULT))] text-white rounded-full text-sm font-medium"
-                  onClick={() => setIsOpen(false)}
-                >
-                  Get In Touch
-                </Link>
-              </li>
-            </ul>
+        {/* Mobile menu - Full Screen Overlay */}
+        <div 
+          className={`fixed inset-0 bg-white/98 backdrop-blur-md transition-all duration-500 flex flex-col justify-center items-center md:hidden ${
+            isOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
+          }`}
+        >
+          <ul className="flex flex-col space-y-5 text-center">
+            <li>
+              <Link 
+                href="/"
+                className={`nav-link block px-2 py-1 text-xl ${isActive('/') ? 'active' : ''}`}
+                onClick={() => setIsOpen(false)}
+              >
+                Home
+              </Link>
+            </li>
+            <li>
+              <Link 
+                href="/about"
+                className={`nav-link block px-2 py-1 text-xl ${isActive('/about') ? 'active' : ''}`}
+                onClick={() => setIsOpen(false)}
+              >
+                About Us
+              </Link>
+            </li>
+            <li>
+              <Link 
+                href="/services"
+                className={`nav-link block px-2 py-1 text-xl ${isActive('/services') ? 'active' : ''}`}
+                onClick={() => setIsOpen(false)}
+              >
+                Services
+              </Link>
+            </li>
+            <li>
+              <Link 
+                href="/projects"
+                className={`nav-link block px-2 py-1 text-xl ${isActive('/projects') ? 'active' : ''}`}
+                onClick={() => setIsOpen(false)}
+              >
+                Projects
+              </Link>
+            </li>
+            <li>
+              <Link 
+                href="/contact"
+                className={`nav-link block px-2 py-1 text-xl ${isActive('/contact') ? 'active' : ''}`}
+                onClick={() => setIsOpen(false)}
+              >
+                Contact
+              </Link>
+            </li>
+            <li className="pt-6">
+              <Link 
+                href="/contact" 
+                className="inline-block px-8 py-3 btn-royal rounded-full"
+                onClick={() => setIsOpen(false)}
+              >
+                Get In Touch
+              </Link>
+            </li>
+          </ul>
+          
+          {/* Social Media Links in Mobile Menu */}
+          <div className="mt-12 flex space-x-4">
+            <a 
+              href="#" 
+              className="w-10 h-10 rounded-full bg-royal-light/10 flex items-center justify-center text-royal-DEFAULT hover:bg-royal-DEFAULT hover:text-white transition-all"
+            >
+              <i className="bi bi-instagram"></i>
+            </a>
+            <a 
+              href="#" 
+              className="w-10 h-10 rounded-full bg-royal-light/10 flex items-center justify-center text-royal-DEFAULT hover:bg-royal-DEFAULT hover:text-white transition-all"
+            >
+              <i className="bi bi-facebook"></i>
+            </a>
+            <a 
+              href="#" 
+              className="w-10 h-10 rounded-full bg-royal-light/10 flex items-center justify-center text-royal-DEFAULT hover:bg-royal-DEFAULT hover:text-white transition-all"
+            >
+              <i className="bi bi-pinterest"></i>
+            </a>
           </div>
-        )}
+        </div>
       </div>
     </nav>
   );

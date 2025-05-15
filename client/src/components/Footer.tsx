@@ -1,3 +1,5 @@
+import { Link } from "wouter";
+
 const Footer = () => {
   return (
     <footer className="bg-royal-dark text-white py-10">
@@ -14,29 +16,29 @@ const Footer = () => {
             <h6 className="font-montserrat text-lg mb-4">Quick Links</h6>
             <ul className="space-y-2">
               <li>
-                <a href="#home" className="text-gray-300 hover:text-white transition-colors">
+                <Link href="/" className="text-gray-300 hover:text-white transition-colors">
                   Home
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#about" className="text-gray-300 hover:text-white transition-colors">
+                <Link href="/about" className="text-gray-300 hover:text-white transition-colors">
                   About Us
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#services" className="text-gray-300 hover:text-white transition-colors">
+                <Link href="/services" className="text-gray-300 hover:text-white transition-colors">
                   Services
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#projects" className="text-gray-300 hover:text-white transition-colors">
+                <Link href="/projects" className="text-gray-300 hover:text-white transition-colors">
                   Projects
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#contact" className="text-gray-300 hover:text-white transition-colors">
+                <Link href="/contact" className="text-gray-300 hover:text-white transition-colors">
                   Contact
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -45,29 +47,29 @@ const Footer = () => {
             <h6 className="font-montserrat text-lg mb-4">Services</h6>
             <ul className="space-y-2">
               <li>
-                <a href="#services" className="text-gray-300 hover:text-white transition-colors">
+                <Link href="/services" className="text-gray-300 hover:text-white transition-colors">
                   Space Planning
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#services" className="text-gray-300 hover:text-white transition-colors">
+                <Link href="/services" className="text-gray-300 hover:text-white transition-colors">
                   Color Consultation
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#services" className="text-gray-300 hover:text-white transition-colors">
+                <Link href="/services" className="text-gray-300 hover:text-white transition-colors">
                   Furniture Selection
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#services" className="text-gray-300 hover:text-white transition-colors">
+                <Link href="/services" className="text-gray-300 hover:text-white transition-colors">
                   3D Visualization
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#services" className="text-gray-300 hover:text-white transition-colors">
+                <Link href="/services" className="text-gray-300 hover:text-white transition-colors">
                   Project Management
-                </a>
+                </Link>
               </li>
             </ul>
           </div>

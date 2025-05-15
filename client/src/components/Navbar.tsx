@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
+import { Link, useLocation } from "wouter";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [location] = useLocation();
 
   // Handle navbar background on scroll
   useEffect(() => {
@@ -21,13 +23,17 @@ const Navbar = () => {
     };
   }, []);
 
+  const isActive = (path: string) => {
+    return location === path;
+  };
+
   return (
-    <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-white shadow-sm' : 'bg-white shadow-sm'}`}>
+    <nav className={`sticky top-0 left-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-white shadow-sm' : 'bg-white shadow-sm'}`}>
       <div className="container mx-auto px-4 py-3">
         <div className="flex items-center justify-between">
-          <a href="#home" className="flex items-center">
+          <Link href="/" className="flex items-center">
             <span className="text-royal-DEFAULT font-playfair text-2xl font-bold">Dzyner Thoughts</span>
-          </a>
+          </Link>
           
           {/* Mobile menu button */}
           <button 
@@ -46,27 +52,52 @@ const Navbar = () => {
           <div className="hidden md:flex items-center space-x-1">
             <ul className="flex space-x-4">
               <li>
-                <a className="nav-link active px-2 py-1" href="#home">Home</a>
+                <Link 
+                  href="/" 
+                  className={`nav-link px-2 py-1 ${isActive('/') ? 'active' : ''}`}
+                >
+                  Home
+                </Link>
               </li>
               <li>
-                <a className="nav-link px-2 py-1" href="#about">About Us</a>
+                <Link 
+                  href="/about" 
+                  className={`nav-link px-2 py-1 ${isActive('/about') ? 'active' : ''}`}
+                >
+                  About Us
+                </Link>
               </li>
               <li>
-                <a className="nav-link px-2 py-1" href="#services">Services</a>
+                <Link 
+                  href="/services" 
+                  className={`nav-link px-2 py-1 ${isActive('/services') ? 'active' : ''}`}
+                >
+                  Services
+                </Link>
               </li>
               <li>
-                <a className="nav-link px-2 py-1" href="#projects">Projects</a>
+                <Link 
+                  href="/projects" 
+                  className={`nav-link px-2 py-1 ${isActive('/projects') ? 'active' : ''}`}
+                >
+                  Projects
+                </Link>
               </li>
               <li>
-                <a className="nav-link px-2 py-1" href="#contact">Contact</a>
+                <Link 
+                  href="/contact" 
+                  className={`nav-link px-2 py-1 ${isActive('/contact') ? 'active' : ''}`}
+                >
+                  Contact
+                </Link>
               </li>
             </ul>
-            <a 
-              href="#contact" 
+            <Link 
+              href="/contact" 
               className="ml-4 px-4 py-2 bg-[hsl(var(--royal-DEFAULT))] text-white rounded-full text-sm font-medium transition-all duration-300 hover:bg-[hsl(var(--royal-dark))] hover:transform hover:-translate-y-0.5 hover:shadow-md"
             >
               Get In Touch
-            </a>
+            </Link>
           </div>
         </div>
         
@@ -75,58 +106,58 @@ const Navbar = () => {
           <div className="md:hidden pt-4 pb-2">
             <ul className="flex flex-col space-y-3">
               <li>
-                <a 
-                  className="nav-link block px-2 py-1"
-                  href="#home"
+                <Link 
+                  href="/"
+                  className={`nav-link block px-2 py-1 ${isActive('/') ? 'active' : ''}`}
                   onClick={() => setIsOpen(false)}
                 >
                   Home
-                </a>
+                </Link>
               </li>
               <li>
-                <a 
-                  className="nav-link block px-2 py-1"
-                  href="#about"
+                <Link 
+                  href="/about"
+                  className={`nav-link block px-2 py-1 ${isActive('/about') ? 'active' : ''}`}
                   onClick={() => setIsOpen(false)}
                 >
                   About Us
-                </a>
+                </Link>
               </li>
               <li>
-                <a 
-                  className="nav-link block px-2 py-1"
-                  href="#services"
+                <Link 
+                  href="/services"
+                  className={`nav-link block px-2 py-1 ${isActive('/services') ? 'active' : ''}`}
                   onClick={() => setIsOpen(false)}
                 >
                   Services
-                </a>
+                </Link>
               </li>
               <li>
-                <a 
-                  className="nav-link block px-2 py-1"
-                  href="#projects"
+                <Link 
+                  href="/projects"
+                  className={`nav-link block px-2 py-1 ${isActive('/projects') ? 'active' : ''}`}
                   onClick={() => setIsOpen(false)}
                 >
                   Projects
-                </a>
+                </Link>
               </li>
               <li>
-                <a 
-                  className="nav-link block px-2 py-1"
-                  href="#contact"
+                <Link 
+                  href="/contact"
+                  className={`nav-link block px-2 py-1 ${isActive('/contact') ? 'active' : ''}`}
                   onClick={() => setIsOpen(false)}
                 >
                   Contact
-                </a>
+                </Link>
               </li>
               <li className="pt-2">
-                <a 
-                  href="#contact" 
+                <Link 
+                  href="/contact" 
                   className="inline-block px-4 py-2 bg-[hsl(var(--royal-DEFAULT))] text-white rounded-full text-sm font-medium"
                   onClick={() => setIsOpen(false)}
                 >
                   Get In Touch
-                </a>
+                </Link>
               </li>
             </ul>
           </div>

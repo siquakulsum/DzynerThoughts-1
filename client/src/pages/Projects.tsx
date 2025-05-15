@@ -44,32 +44,59 @@ const Projects = () => {
         <meta name="description" content="Explore our portfolio of interior design projects - from residential spaces to commercial establishments, each with our signature elegant touch." />
       </Helmet>
 
+      {/* Elegant Hero Banner with Decorative Elements */}
+      <section className="relative pt-32 pb-20 overflow-hidden bg-gradient-to-r from-royal-DEFAULT via-royal-dark to-royal-DEFAULT">
+        {/* Decorative elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-0 right-0 w-96 h-96 bg-gold opacity-5 rounded-full translate-x-1/2 -translate-y-1/2"></div>
+          <div className="absolute bottom-0 left-0 w-96 h-96 bg-gold opacity-5 rounded-full -translate-x-1/2 translate-y-1/2"></div>
+          
+          {/* Pattern overlay */}
+          <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0wIDBoNjB2NjBIMHoiLz48cGF0aCBkPSJNMzAgMzBtLTI4IDBhMjggMjggMCAxIDAgNTYgMCAyOCAyOCAwIDEgMC01NiAwIiBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iLjUiIHN0cm9rZS1vcGFjaXR5PSIuMSIvPjxwYXRoIGQ9Ik0zMCAzMG0tMjQgMGEyNCAyNCAwIDEgMCA0OCAwIDI0IDI0IDAgMSAwLTQ4IDAiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLXdpZHRoPSIuNSIgc3Ryb2tlLW9wYWNpdHk9Ii4xIi8+PHBhdGggZD0iTTMwIDMwbS0yMCAwYTIwIDIwIDAgMSAwIDQwIDAgMjAgMjAgMCAxIDAtNDAgMCIgc3Ryb2tlPSIjZmZmIiBzdHJva2Utd2lkdGg9Ii41IiBzdHJva2Utb3BhY2l0eT0iLjEiLz48cGF0aCBkPSJNMzAgMzBtLTE2IDBhMTYgMTYgMCAxIDAgMzIgMCAxNiAxNiAwIDEgMC0zMiAwIiBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iLjUiIHN0cm9rZS1vcGFjaXR5PSIuMSIvPjxwYXRoIGQ9Ik0zMCAzMG0tMTIgMGExMiAxMiAwIDEgMCAyNCAwIDEyIDEyIDAgMSAwLTI0IDAiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLXdpZHRoPSIuNSIgc3Ryb2tlLW9wYWNpdHk9Ii4xIi8+PHBhdGggZD0iTTMwIDMwbS04IDBhOCA4IDAgMSAwIDE2IDAgOCA4IDAgMSAwLTE2IDAiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLXdpZHRoPSIuNSIgc3Ryb2tlLW9wYWNpdHk9Ii4xIi8+PHBhdGggZD0iTTMwIDMwbS00IDBhNCA0IDAgMSAwIDggMCA0IDQgMCAxIDAtOCAwIiBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iLjUiIHN0cm9rZS1vcGFjaXR5PSIuMSIvPjwvZz48L3N2Zz4=')] opacity-10"></div>
+        </div>
+        
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="flex flex-col items-center max-w-3xl mx-auto text-center">
+            {/* Label */}
+            <div className="inline-flex items-center mb-5">
+              <span className="h-px w-8 bg-gold"></span>
+              <span className="mx-3 text-gold font-cinzel tracking-widest text-sm uppercase">Portfolio</span>
+              <span className="h-px w-8 bg-gold"></span>
+            </div>
+            
+            {/* Title */}
+            <h1 className="text-4xl md:text-6xl font-cinzel text-white font-bold mb-6 leading-tight">
+              Our <span className="text-gold">Projects</span>
+            </h1>
+            
+            {/* Description */}
+            <p className="text-white/90 text-lg max-w-2xl mx-auto font-josefin leading-relaxed mb-8">
+              Explore our portfolio of meticulously crafted interiors that embody sophistication, 
+              functionality, and our signature attention to detail.
+            </p>
+            
+            {/* Decorative element */}
+            <div className="w-24 h-1.5 mt-2 bg-gradient-to-r from-transparent via-gold to-transparent"></div>
+          </div>
+        </div>
+      </section>
+
+      {/* Projects Gallery Section */}
       <section 
-        className="py-16 mt-8 page-section"
+        className="py-24 page-section"
         ref={ref}
       >
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h6 className="uppercase font-bold text-royal-DEFAULT mb-2 font-montserrat">
-              Our Recent Projects
-            </h6>
-            <h1 className="text-3xl md:text-5xl mb-3 font-playfair">
-              Spaces We've Transformed
-            </h1>
-            <p className="text-lg mx-auto font-raleway" style={{ maxWidth: '700px' }}>
-              Browse through our portfolio of recent interior design projects spanning residential and commercial spaces.
-            </p>
-          </div>
-
-          <div className="mb-8 text-center">
-            <div className="inline-flex flex-wrap justify-center gap-2">
+          {/* Filtering categories */}
+          <div className="mb-16 text-center">
+            <div className="inline-flex flex-wrap justify-center gap-3">
               {categories.map(category => (
                 <button
                   key={category.id}
-                  className={`filter-btn px-4 py-1.5 rounded-full text-sm border ${
+                  className={`filter-btn px-6 py-2.5 rounded-full font-cinzel tracking-wider text-sm uppercase transition-all ${
                     activeFilter === category.id 
-                      ? 'active bg-[hsl(var(--royal-DEFAULT))] text-white border-transparent' 
-                      : 'border-gray-300 hover:border-[hsl(var(--royal-DEFAULT))]'
+                      ? 'active bg-[hsl(var(--royal-DEFAULT))] text-white border-transparent shadow-royal' 
+                      : 'bg-white border border-gray-200 hover:border-[hsl(var(--gold))] shadow-sm'
                   }`}
                   onClick={() => setActiveFilter(category.id)}
                 >
@@ -81,58 +108,96 @@ const Projects = () => {
 
           {isLoading ? (
             <div className="flex justify-center items-center py-20">
-              <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-royal-DEFAULT"></div>
+              <div className="w-16 h-16 relative">
+                <div className="absolute inset-0 rounded-full border-4 border-gold/20 animate-ping"></div>
+                <div className="absolute inset-0 rounded-full border-t-4 border-gold animate-spin"></div>
+              </div>
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {filteredProjects?.map((project) => (
                 <div 
                   key={project.id} 
-                  className="project-card rounded-lg overflow-hidden shadow-md h-full"
+                  className="project-card group rounded-lg overflow-hidden shadow-xl cursor-pointer hover-lift"
+                  onClick={() => openModal(project)}
                 >
-                  <div className="overflow-hidden">
+                  <div className="overflow-hidden relative">
                     <img 
                       src={project.image} 
                       alt={project.title} 
-                      className="w-full h-64 object-cover"
+                      className="w-full h-72 object-cover"
                     />
+                    
+                    {/* Hover overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-royal-DEFAULT/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                      <div className="p-6 w-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                        <h3 className="font-cinzel text-xl text-white mb-2">{project.title}</h3>
+                        <div className="flex flex-wrap gap-2 mb-3">
+                          {project.categories.split(',').map((category, index) => (
+                            <span 
+                              key={index} 
+                              className="bg-white/20 backdrop-blur-sm text-white text-xs px-3 py-1 rounded-full font-josefin"
+                            >
+                              {category.trim()}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                    
+                    {/* View button that appears on hover */}
+                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
+                      <button 
+                        className="px-6 py-2.5 bg-white rounded-full font-cinzel text-royal-DEFAULT text-sm tracking-wider uppercase shadow-xl hover:bg-gold hover:text-white transition-all"
+                      >
+                        View Details
+                      </button>
+                    </div>
                   </div>
-                  <div className="p-4 bg-white">
-                    <h3 className="font-playfair text-xl mb-2">{project.title}</h3>
-                    <p className="text-gray-600 mb-3 font-raleway">{project.description}</p>
+                  
+                  {/* Content visible on mobile */}
+                  <div className="p-6 bg-white md:hidden">
+                    <h3 className="font-cinzel text-xl mb-2">{project.title}</h3>
+                    <p className="text-gray-700 mb-3 font-josefin">{project.description.substring(0, 80)}...</p>
                     <div className="flex flex-wrap gap-1 mb-3">
-                      {project.categories.split(',').map((category, index) => (
+                      {project.categories.split(',').slice(0, 2).map((category, index) => (
                         <span 
                           key={index} 
-                          className="bg-neutral-light text-xs px-2 py-1 rounded-full"
+                          className="bg-royal-DEFAULT/10 text-royal-DEFAULT text-xs px-3 py-1 rounded-full font-josefin"
                         >
-                          {category}
+                          {category.trim()}
                         </span>
                       ))}
+                      {project.categories.split(',').length > 2 && (
+                        <span className="text-xs px-2 py-1 text-gray-500">+{project.categories.split(',').length - 2} more</span>
+                      )}
                     </div>
-                    <button 
-                      className="px-3 py-1.5 bg-[hsl(var(--royal-DEFAULT))] text-white rounded-full text-sm font-medium hover:bg-[hsl(var(--royal-dark))]"
-                      onClick={() => openModal(project)}
-                    >
-                      View Details
-                    </button>
                   </div>
                 </div>
               ))}
             </div>
           )}
 
-          <div className="text-center mt-16">
-            <h2 className="text-2xl md:text-3xl mb-4 font-playfair">Ready to Start Your Project?</h2>
-            <p className="text-lg mx-auto mb-6 font-raleway" style={{ maxWidth: '700px' }}>
-              Contact us today to discuss how we can transform your space into something extraordinary.
-            </p>
-            <a 
-              href="/contact" 
-              className="inline-block px-6 py-3 bg-[hsl(var(--royal-DEFAULT))] text-white rounded-full text-md font-medium transition-all duration-300 hover:bg-[hsl(var(--royal-dark))] hover:transform hover:-translate-y-0.5 hover:shadow-md"
-            >
-              Get in Touch
-            </a>
+          {/* Luxurious CTA Section */}
+          <div className="mt-32 relative">
+            <div className="absolute inset-0 rounded-xl overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-r from-royal-DEFAULT to-royal-dark opacity-90"></div>
+              <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0wIDBoNjB2NjBIMHoiLz48cGF0aCBkPSJNMzAgMzBtLTI4IDBhMjggMjggMCAxIDAgNTYgMCAyOCAyOCAwIDEgMC01NiAwIiBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iLjUiIHN0cm9rZS1vcGFjaXR5PSIuMSIvPjxwYXRoIGQ9Ik0zMCAzMG0tMjQgMGEyNCAyNCAwIDEgMCA0OCAwIDI0IDI0IDAgMSAwLTQ4IDAiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLXdpZHRoPSIuNSIgc3Ryb2tlLW9wYWNpdHk9Ii4xIi8+PHBhdGggZD0iTTMwIDMwbS0yMCAwYTIwIDIwIDAgMSAwIDQwIDAgMjAgMjAgMCAxIDAtNDAgMCIgc3Ryb2tlPSIjZmZmIiBzdHJva2Utd2lkdGg9Ii41IiBzdHJva2Utb3BhY2l0eT0iLjEiLz48cGF0aCBkPSJNMzAgMzBtLTE2IDBhMTYgMTYgMCAxIDAgMzIgMCAxNiAxNiAwIDEgMC0zMiAwIiBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iLjUiIHN0cm9rZS1vcGFjaXR5PSIuMSIvPjxwYXRoIGQ9Ik0zMCAzMG0tMTIgMGExMiAxMiAwIDEgMCAyNCAwIDEyIDEyIDAgMSAwLTI0IDAiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLXdpZHRoPSIuNSIgc3Ryb2tlLW9wYWNpdHk9Ii4xIi8+PHBhdGggZD0iTTMwIDMwbS04IDBhOCA4IDAgMSAwIDE2IDAgOCA4IDAgMSAwLTE2IDAiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLXdpZHRoPSIuNSIgc3Ryb2tlLW9wYWNpdHk9Ii4xIi8+PHBhdGggZD0iTTMwIDMwbS00IDBhNCA0IDAgMSAwIDggMCA0IDQgMCAxIDAtOCAwIiBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iLjUiIHN0cm9rZS1vcGFjaXR5PSIuMSIvPjwvZz48L3N2Zz4=')] opacity-20"></div>
+            </div>
+            
+            <div className="relative z-10 py-16 px-6 text-center">
+              <h2 className="text-3xl md:text-4xl font-cinzel text-white mb-6">Envision Your Perfect Space</h2>
+              <p className="text-white/90 text-lg max-w-2xl mx-auto mb-10 font-josefin">
+                Let us transform your vision into reality. Our expert designers are ready to collaborate 
+                with you to create a space that reflects your unique style and enhances your lifestyle.
+              </p>
+              <a 
+                href="/contact" 
+                className="px-8 py-4 btn-gold rounded-full"
+              >
+                Start Your Project
+              </a>
+            </div>
           </div>
         </div>
       </section>

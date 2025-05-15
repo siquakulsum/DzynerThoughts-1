@@ -4,10 +4,10 @@ import {
   projects, type Project, type InsertProject,
   contacts, type Contact, type InsertContact
 } from "@shared/schema";
+import { db } from "./db";
+import { eq, like } from "drizzle-orm";
 
-// modify the interface with any CRUD methods
-// you might need
-
+// Interface for storage operations
 export interface IStorage {
   // Users
   getUser(id: number): Promise<User | undefined>;
@@ -29,35 +29,97 @@ export interface IStorage {
   createContact(contact: InsertContact): Promise<Contact>;
 }
 
-export class MemStorage implements IStorage {
-  private users: Map<number, User>;
-  private services: Map<number, Service>;
-  private projects: Map<number, Project>;
-  private contacts: Map<number, Contact>;
-  
-  private currentUserId: number;
-  private currentServiceId: number;
-  private currentProjectId: number;
-  private currentContactId: number;
-
-  constructor() {
-    this.users = new Map();
-    this.services = new Map();
-    this.projects = new Map();
-    this.contacts = new Map();
-    
-    this.currentUserId = 1;
-    this.currentServiceId = 1;
-    this.currentProjectId = 1;
-    this.currentContactId = 1;
-    
-    // Initialize with default services
-    this.initDefaultServices();
-    // Initialize with default projects
-    this.initDefaultProjects();
+// Database Storage implementation
+export class DatabaseStorage implements IStorage {
+  // User methods
+  async getUser(id: number): Promise<User | undefined> {
+    const [user] = await db.select().from(users).where(eq(users.id, id));
+    return user || undefined;
   }
 
-  private initDefaultServices() {
+  async getUserByUsername(username: string): Promise<User | undefined> {
+    const [user] = await db.select().from(users).where(eq(users.username, username));
+    return user || undefined;
+  }
+
+  async createUser(insertUser: InsertUser): Promise<User> {
+    const [user] = await db
+      .insert(users)
+      .values(insertUser)
+      .returning();
+    return user;
+  }
+
+  // Service methods
+  async getAllServices(): Promise<Service[]> {
+    return await db.select().from(services);
+  }
+
+  async getService(id: number): Promise<Service | undefined> {
+    const [service] = await db.select().from(services).where(eq(services.id, id));
+    return service || undefined;
+  }
+
+  async createService(insertService: InsertService): Promise<Service> {
+    const [service] = await db
+      .insert(services)
+      .values(insertService)
+      .returning();
+    return service;
+  }
+
+  // Project methods
+  async getAllProjects(): Promise<Project[]> {
+    return await db.select().from(projects);
+  }
+
+  async getProject(id: number): Promise<Project | undefined> {
+    const [project] = await db.select().from(projects).where(eq(projects.id, id));
+    return project || undefined;
+  }
+
+  async getProjectsByCategory(category: string): Promise<Project[]> {
+    return await db
+      .select()
+      .from(projects)
+      .where(like(projects.categories, `%${category}%`));
+  }
+
+  async createProject(insertProject: InsertProject): Promise<Project> {
+    const [project] = await db
+      .insert(projects)
+      .values(insertProject)
+      .returning();
+    return project;
+  }
+
+  // Contact methods
+  async createContact(insertContact: InsertContact): Promise<Contact> {
+    const [contact] = await db
+      .insert(contacts)
+      .values(insertContact)
+      .returning();
+    return contact;
+  }
+
+  // Initialize default data
+  async initializeDefaultData() {
+    // Check if we already have services in the database
+    const existingServices = await this.getAllServices();
+    if (existingServices.length === 0) {
+      console.log("Initializing default services...");
+      await this.initDefaultServices();
+    }
+
+    // Check if we already have projects in the database
+    const existingProjects = await this.getAllProjects();
+    if (existingProjects.length === 0) {
+      console.log("Initializing default projects...");
+      await this.initDefaultProjects();
+    }
+  }
+
+  private async initDefaultServices() {
     const defaultServices: InsertService[] = [
       {
         title: "Space Planning",
@@ -106,12 +168,12 @@ export class MemStorage implements IStorage {
       }
     ];
 
-    defaultServices.forEach(service => {
-      this.createService(service);
-    });
+    for (const service of defaultServices) {
+      await this.createService(service);
+    }
   }
 
-  private initDefaultProjects() {
+  private async initDefaultProjects() {
     const defaultProjects: InsertProject[] = [
       {
         title: "Minimalist Apartment",
@@ -193,74 +255,10 @@ export class MemStorage implements IStorage {
       }
     ];
 
-    defaultProjects.forEach(project => {
-      this.createProject(project);
-    });
-  }
-
-  // User methods
-  async getUser(id: number): Promise<User | undefined> {
-    return this.users.get(id);
-  }
-
-  async getUserByUsername(username: string): Promise<User | undefined> {
-    return Array.from(this.users.values()).find(
-      (user) => user.username === username,
-    );
-  }
-
-  async createUser(insertUser: InsertUser): Promise<User> {
-    const id = this.currentUserId++;
-    const user: User = { ...insertUser, id };
-    this.users.set(id, user);
-    return user;
-  }
-
-  // Service methods
-  async getAllServices(): Promise<Service[]> {
-    return Array.from(this.services.values());
-  }
-
-  async getService(id: number): Promise<Service | undefined> {
-    return this.services.get(id);
-  }
-
-  async createService(insertService: InsertService): Promise<Service> {
-    const id = this.currentServiceId++;
-    const service: Service = { ...insertService, id };
-    this.services.set(id, service);
-    return service;
-  }
-
-  // Project methods
-  async getAllProjects(): Promise<Project[]> {
-    return Array.from(this.projects.values());
-  }
-
-  async getProject(id: number): Promise<Project | undefined> {
-    return this.projects.get(id);
-  }
-
-  async getProjectsByCategory(category: string): Promise<Project[]> {
-    return Array.from(this.projects.values()).filter(
-      (project) => project.categories.includes(category)
-    );
-  }
-
-  async createProject(insertProject: InsertProject): Promise<Project> {
-    const id = this.currentProjectId++;
-    const project: Project = { ...insertProject, id };
-    this.projects.set(id, project);
-    return project;
-  }
-
-  // Contact methods
-  async createContact(insertContact: InsertContact): Promise<Contact> {
-    const id = this.currentContactId++;
-    const contact: Contact = { ...insertContact, id };
-    this.contacts.set(id, contact);
-    return contact;
+    for (const project of defaultProjects) {
+      await this.createProject(project);
+    }
   }
 }
 
-export const storage = new MemStorage();
+export const storage = new DatabaseStorage();
